@@ -1,0 +1,46 @@
+{
+  "name": "param-injection",
+  "version": "0.0.1",
+  "description": "(Node.js) Wraps a function so that one or some of the parameters can be auto-loaded at run time. Mainly used to build modules or functions that may have some run time dependencies.",
+  "author": {
+    "name": "Wiredcraft",
+    "email": "info@wiredcraft.com",
+    "url": "http://wiredcraft.com"
+  },
+  "contributors": [
+    "Makara Wang"
+  ],
+  "keywords": [
+    "param",
+    "parameter",
+    "injection",
+    "promise"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Wiredcraft/param-injection.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Wiredcraft/param-injection/issues"
+  },
+  "homepage": "https://github.com/Wiredcraft/param-injection",
+  "dependencies": {
+    "bluebird": "2",
+    "debug": "*"
+  },
+  "devDependencies": {
+    "benchmark": "latest",
+    "gulp": "latest",
+    "gulp-coffee": "latest",
+    "gulp-coffeelint": "latest",
+    "gulp-coverage": "latest",
+    "gulp-jshint": "latest",
+    "gulp-mocha": "latest",
+    "gulp-util": "latest",
+    "jshint-stylish": "latest",
+    "request": "latest",
+    "should": "latest"
+  },
+  "scripts": {}
+}
