@@ -27,7 +27,8 @@
   "homepage": "https://github.com/Wiredcraft/param-injection",
   "dependencies": {
     "bluebird": "2",
-    "debug": "*"
+    "debug": "*",
+    "sliced": "*"
   },
   "devDependencies": {
     "benchmark": "latest",
