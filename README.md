@@ -60,7 +60,7 @@ __Tip__: you can do the above 2 lines in one step.
 var myRequest = injectify(requestSomething, 'url').inject('url', getUrl);
 ```
 
-Now you can run the wrapper, with only the other arguments.
+Now you can run the wrapper, with only the other arguments (meaning that the new function has a different API with the original function).
 
 ```js
 myRequest('other', 'args').then(function(res) {
