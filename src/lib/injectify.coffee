@@ -1,7 +1,6 @@
 debug = require('debug')('carcass:paramInjection')
 
 Promise = require('bluebird')
-
 utils = require('./utils')
 
 methods = require('./methods')
@@ -23,15 +22,8 @@ bodyWithoutParams = bodies.withoutParams
  * @return {Function} the wrapper
 ###
 module.exports = injectify = (fn, context, params...) ->
-    # Validate context. Since context is must an object and parameters must be
-    # strings, user can skip context.
-    if typeof context is 'string'
-        params.unshift(context)
-        context = false
-    else if not context?
-        context = false
-    else if not utils.isObject(context)
-        throw new TypeError(utils.format('%s can not be used as a context or a parameter name', typeof context))
+    # Validate context.
+    context = utils.validateContext(context, params)
 
     # Build body. Copied idea from bluebird - we first build a function with a
     # dynamically generated body, and then use the function to get the wrapper.
