@@ -1,6 +1,6 @@
 # debug = require('debug')('carcass:paramInjection')
 
-utils = require('./utils')
+utils = require('../utils')
 
 ###*
  * .

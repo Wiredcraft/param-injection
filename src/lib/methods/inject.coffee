@@ -1,4 +1,4 @@
-utils = require('./utils')
+utils = require('../utils')
 
 ###*
  * Inject a getter for a parameter.

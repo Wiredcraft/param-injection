@@ -3,10 +3,13 @@ debug = require('debug')('carcass:paramInjection')
 Promise = require('bluebird')
 
 utils = require('./utils')
-methodInject = require('./method.inject')
 
-bodyWithParams = require('./body.withParams')
-bodyWithoutParams = require('./body.withoutParams')
+methods = require('./methods')
+methodInject = methods.inject
+
+bodies = require('./bodies')
+bodyWithParams = bodies.withParams
+bodyWithoutParams = bodies.withoutParams
 
 ###*
  * Wraps a function so that one or some of the parameters can be auto-loaded at

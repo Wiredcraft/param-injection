@@ -1,3 +1,9 @@
 var injectify;
 
 module.exports = injectify = require('./lib/injectify');
+
+injectify.utils = require('./lib/utils');
+
+injectify.bodies = require('./lib/bodies');
+
+injectify.methods = require('./lib/methods');
