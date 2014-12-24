@@ -93,6 +93,14 @@ Can be used to build some callback based APIs.
 
 However note that the dependencies are still promise based.
 
+### Return auto
+
+A variation that returns either the promise or the context, depends on if a callback function is given.
+
+Can be used to build something with both a promise API and a callback API.
+
+However note that 1) the dependencies are still promise based and 2) the last argument is considered as a callback if it is a function and 3) we assume the callback will be properly handled.
+
 ### With "promisify"
 
 TODO

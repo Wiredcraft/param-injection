@@ -7,3 +7,4 @@ injectify.methods = require('./lib/methods')
 
 # Variations.
 injectify.returnSelf = require('./lib/variations/returnSelf')
+injectify.returnAuto = require('./lib/variations/returnAuto')
