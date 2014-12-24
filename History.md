@@ -1,4 +1,12 @@
 
+0.0.2 / 2014-12-24
+==================
+
+  * Added a variation that can return either a promise or self, depends on if a callback is given.
+  * Added a variation that returns self.
+  * Moved context validation to be a utils method.
+  * Organized lib files into sub-folders and export them.
+
 0.0.1 / 2014-12-23
 ==================
 
