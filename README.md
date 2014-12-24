@@ -85,6 +85,14 @@ TODO
 
 ## Variations
 
+### Return self
+
+A variation that returns the context or `this`.
+
+Can be used to build some callback based APIs.
+
+However note that the dependencies are still promise based.
+
 ### With "promisify"
 
 TODO
