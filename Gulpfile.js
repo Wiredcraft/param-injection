@@ -41,7 +41,7 @@ gulp.task('jshint', function() {
 gulp.task('mocha', ['coffee'], function() {
     return gulp.src(tests)
         .pipe(coverage.instrument({
-            pattern: ['index.js', 'lib/*.js'],
+            pattern: ['index.js', 'lib/**/*.js'],
             debugDirectory: 'test/debug'
         }))
         .pipe(mocha({
