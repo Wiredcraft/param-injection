@@ -16,22 +16,18 @@ bodyWithoutParams = bodies.withoutParams
  *   time dependencies.
  *
  * @param  {Function|String} fn the function to be wrapped
- * @param  {Object} context can be used to force the run time `this`
  * @param  {String} ...params names for each of the parameters that will be extracted
  *
  * @return {Function} the wrapper
 ###
-module.exports = injectify = (fn, context, params...) ->
-    # Validate context.
-    context = utils.validateContext(context, params)
-
+module.exports = injectify = (fn, params...) ->
     # Build body. Copied idea from bluebird - we first build a function with a
     # dynamically generated body, and then use the function to get the wrapper.
     body = "
         return function injectified() {
             #{
-                if params.length < 1 then bodyWithoutParams(fn, context)
-                else bodyWithParams(fn, context, params)
+                if params.length < 1 then bodyWithoutParams(fn)
+                else bodyWithParams(fn, params)
             }
             return promise;
         }
@@ -39,7 +35,7 @@ module.exports = injectify = (fn, context, params...) ->
     # debug('body', body)
 
     # Build and run the function.
-    injectified = new Function('Promise', 'utils', 'fn', 'context', body)(Promise, utils, fn, context)
+    injectified = new Function('Promise', 'utils', 'fn', body)(Promise, utils, fn)
 
     # Name for each of the parameters.
     injectified.__parameters__ = params

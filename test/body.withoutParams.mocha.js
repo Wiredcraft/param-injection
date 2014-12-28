@@ -34,18 +34,6 @@ describe('Injectify without params:', function() {
             }).should.throwError('number can not be injectified');
         });
 
-        it('should throw', function() {
-            (function() {
-                injectify(noop, true);
-            }).should.throwError('boolean can not be used as a context or a parameter name');
-        });
-
-        it('should throw', function() {
-            (function() {
-                injectify(noop, 1);
-            }).should.throwError('number can not be used as a context or a parameter name');
-        });
-
         // TODO: more.
 
     });
@@ -179,19 +167,19 @@ describe('Injectify without params:', function() {
         };
 
         it('can build a wrapper', function() {
-            wrapper = injectify('func', obj);
+            wrapper = injectify('func');
             wrapper.should.be.type('function');
         });
 
         it('can run the wrapper', function(done) {
             obj.invoked = 0;
-            wrapper().then(function() {
+            wrapper.call(obj).then(function() {
                 obj.invoked.should.equal(1);
             }).then(done, done);
         });
 
         it('can run the wrapper', function(done) {
-            wrapper().then(function() {
+            wrapper.call(obj).then(function() {
                 obj.invoked.should.equal(2);
             }).then(done, done);
         });
@@ -210,19 +198,19 @@ describe('Injectify without params:', function() {
         };
 
         it('can build a wrapper', function() {
-            wrapper = injectify(obj.func, obj);
+            wrapper = injectify(obj.func);
             wrapper.should.be.type('function');
         });
 
         it('can run the wrapper', function(done) {
             obj.invoked = 0;
-            wrapper().then(function() {
+            wrapper.call(obj).then(function() {
                 obj.invoked.should.equal(1);
             }).then(done, done);
         });
 
         it('can run the wrapper', function(done) {
-            wrapper().then(function() {
+            wrapper.call(obj).then(function() {
                 obj.invoked.should.equal(2);
             }).then(done, done);
         });
@@ -281,67 +269,6 @@ describe('Injectify without params:', function() {
         it('can run the wrapper', function(done) {
             obj.wrapper().then(function() {
                 obj.invoked.should.equal(2);
-            }).then(done, done);
-        });
-
-    });
-
-    describe('Build a wrapper for a method from another object:', function() {
-
-        var obj = {};
-
-        var another = {
-            invoked: 0,
-            func: function() {
-                this.invoked++;
-            }
-        };
-
-        it('can build a wrapper', function() {
-            obj.wrapper = injectify('func', another);
-            obj.wrapper.should.be.type('function');
-        });
-
-        it('can run the wrapper', function(done) {
-            another.invoked = 0;
-            obj.wrapper().then(function() {
-                another.invoked.should.equal(1);
-            }).then(done, done);
-        });
-
-        it('can run the wrapper', function(done) {
-            obj.wrapper().then(function() {
-                another.invoked.should.equal(2);
-            }).then(done, done);
-        });
-
-    });
-
-    describe('Build a wrapper that does something to another object:', function() {
-
-        var obj = {};
-
-        var another = {
-            invoked: 0
-        };
-
-        it('can build a wrapper', function() {
-            obj.wrapper = injectify(function() {
-                this.invoked++;
-            }, another);
-            obj.wrapper.should.be.type('function');
-        });
-
-        it('can run the wrapper', function(done) {
-            another.invoked = 0;
-            obj.wrapper().then(function() {
-                another.invoked.should.equal(1);
-            }).then(done, done);
-        });
-
-        it('can run the wrapper', function(done) {
-            obj.wrapper().then(function() {
-                another.invoked.should.equal(2);
             }).then(done, done);
         });
 

@@ -21,32 +21,20 @@ describe('Injectify with params:', function() {
 
         it('should throw', function() {
             (function() {
-                injectify(null, null, 'whatever');
+                injectify(null, 'whatever');
             }).should.throwError('object can not be injectified');
         });
 
         it('should throw', function() {
             (function() {
-                injectify(true, null, 'whatever');
+                injectify(true, 'whatever');
             }).should.throwError('boolean can not be injectified');
         });
 
         it('should throw', function() {
             (function() {
-                injectify(1, null, 'whatever');
+                injectify(1, 'whatever');
             }).should.throwError('number can not be injectified');
-        });
-
-        it('should throw', function() {
-            (function() {
-                injectify(noop, true, 'whatever');
-            }).should.throwError('boolean can not be used as a context or a parameter name');
-        });
-
-        it('should throw', function() {
-            (function() {
-                injectify(noop, 1, 'whatever');
-            }).should.throwError('number can not be used as a context or a parameter name');
         });
 
         // TODO: more.
@@ -229,7 +217,7 @@ describe('Injectify with params:', function() {
         };
 
         it('can build a wrapper', function() {
-            wrapper = injectify('func', obj, 'whatever');
+            wrapper = injectify('func', 'whatever');
             wrapper.should.be.type('function');
         });
 
@@ -238,13 +226,13 @@ describe('Injectify with params:', function() {
         });
 
         it('can run the wrapper', function(done) {
-            wrapper('lorem').then(function() {
+            wrapper.call(obj, 'lorem').then(function() {
                 obj.result.should.equal('dependency lorem');
             }).then(done, done);
         });
 
         it('can run the wrapper', function(done) {
-            wrapper('ipsum').then(function() {
+            wrapper.call(obj, 'ipsum').then(function() {
                 obj.result.should.equal('dependency ipsum');
             }).then(done, done);
         });
@@ -263,7 +251,7 @@ describe('Injectify with params:', function() {
         };
 
         it('can build a wrapper', function() {
-            wrapper = injectify(obj.func, obj, 'whatever');
+            wrapper = injectify(obj.func, 'whatever');
             wrapper.should.be.type('function');
         });
 
@@ -272,13 +260,13 @@ describe('Injectify with params:', function() {
         });
 
         it('can run the wrapper', function(done) {
-            wrapper('lorem').then(function() {
+            wrapper.call(obj, 'lorem').then(function() {
                 obj.result.should.equal('dependency lorem');
             }).then(done, done);
         });
 
         it('can run the wrapper', function(done) {
-            wrapper('ipsum').then(function() {
+            wrapper.call(obj, 'ipsum').then(function() {
                 obj.result.should.equal('dependency ipsum');
             }).then(done, done);
         });
@@ -343,73 +331,6 @@ describe('Injectify with params:', function() {
         it('can run the wrapper', function(done) {
             obj.wrapper('ipsum').then(function() {
                 obj.result.should.equal('dependency ipsum');
-            }).then(done, done);
-        });
-
-    });
-
-    describe('Build a wrapper for a method from another object:', function() {
-
-        var obj = {};
-
-        var another = {
-            result: null,
-            func: function(dep, arg) {
-                this.result = dep + ' ' + arg;
-            }
-        };
-
-        it('can build a wrapper', function() {
-            obj.wrapper = injectify('func', another, 'whatever');
-            obj.wrapper.should.be.type('function');
-        });
-
-        it('can inject', function() {
-            obj.wrapper.inject('whatever', dep);
-        });
-
-        it('can run the wrapper', function(done) {
-            obj.wrapper('lorem').then(function() {
-                another.result.should.equal('dependency lorem');
-            }).then(done, done);
-        });
-
-        it('can run the wrapper', function(done) {
-            obj.wrapper('ipsum').then(function() {
-                another.result.should.equal('dependency ipsum');
-            }).then(done, done);
-        });
-
-    });
-
-    describe('Build a wrapper that does something to another object:', function() {
-
-        var obj = {};
-
-        var another = {
-            result: null
-        };
-
-        it('can build a wrapper', function() {
-            obj.wrapper = injectify(function(dep, arg) {
-                this.result = dep + ' ' + arg;
-            }, another, 'whatever');
-            obj.wrapper.should.be.type('function');
-        });
-
-        it('can inject', function() {
-            obj.wrapper.inject('whatever', dep);
-        });
-
-        it('can run the wrapper', function(done) {
-            obj.wrapper('lorem').then(function() {
-                another.result.should.equal('dependency lorem');
-            }).then(done, done);
-        });
-
-        it('can run the wrapper', function(done) {
-            obj.wrapper('ipsum').then(function() {
-                another.result.should.equal('dependency ipsum');
             }).then(done, done);
         });
 

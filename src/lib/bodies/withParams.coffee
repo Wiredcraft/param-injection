@@ -5,18 +5,12 @@ utils = require('../utils')
 ###*
  * .
 ###
-module.exports = withParams = (fn, context, params) ->
+module.exports = withParams = (fn, params) ->
     # Build code that invokes the function.
     if typeof fn is 'function'
-        if context
-            codeForInvoke = 'fn.apply(context, args)'
-        else
-            codeForInvoke = 'fn.apply(self, args)'
+        codeForInvoke = 'fn.apply(self, args)'
     else if typeof fn is 'string'
-        if context
-            codeForInvoke = "context#{ utils.generatePropertyAccess(fn) }.apply(context, args)"
-        else
-            codeForInvoke = "self#{ utils.generatePropertyAccess(fn) }.apply(self, args)"
+        codeForInvoke = "self#{ utils.generatePropertyAccess(fn) }.apply(self, args)"
     else
         throw new TypeError(utils.format('%s can not be injectified', typeof fn))
 
@@ -36,14 +30,9 @@ module.exports = withParams = (fn, context, params) ->
 
     # Build code that invokes every injection.
     codeForInjects = ''
-    if context
-        params.forEach((name, index) ->
-            codeForInjects += "injects[#{ index }].call(context), "
-        )
-    else
-        params.forEach((name, index) ->
-            codeForInjects += "injects[#{ index }].call(self), "
-        )
+    params.forEach((name, index) ->
+        codeForInjects += "injects[#{ index }].call(self), "
+    )
 
     # Build body.
     return "

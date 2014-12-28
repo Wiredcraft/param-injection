@@ -32,7 +32,7 @@ describe('Benchmarking:', function() {
         Benchmark.options.maxTime = 1;
         var suite = Benchmark.Suite();
         suite.add('', function() {
-            wrapper = injectify(lorem, null, 'lorem');
+            wrapper = injectify(lorem, 'lorem');
         });
         suite.on('start', function() {
             debug('build a wrapper with a simple function');
