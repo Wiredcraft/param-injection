@@ -1,17 +1,15 @@
-debug = require('debug')('carcass:paramInjection')
+# debug = require('debug')('carcass:paramInjection')
 
 Promise = require('bluebird')
-utils = require('../utils')
 
-methods = require('../methods')
-methodInject = methods.inject
-
-bodies = require('../bodies')
-bodyWithParams = bodies.withParams
-bodyWithoutParams = bodies.withoutParams
+lib = require('./index')
+utils = lib.utils
+methodInject = lib.methods.inject
+bodyWithParams = lib.bodies.withParams
+bodyWithoutParams = lib.bodies.withoutParams
 
 ###*
- * A variation that returns `this`.
+ * A variant that returns `this`.
  *
  * Can be used to build some callback based APIs.
  *

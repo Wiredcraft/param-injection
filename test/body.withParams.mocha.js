@@ -5,8 +5,6 @@ var Promise = require('bluebird');
 
 var injectify = require('../');
 
-function noop() {}
-
 function dep() {
     return new Promise(function(resolve) {
         setTimeout(function() {

@@ -83,11 +83,11 @@ Without this tool it is usually hard to achieve the same thing but with this too
 
 TODO
 
-## Variations
+## Variants
 
 ### Return self
 
-A variation that returns the context or `this`.
+A variant that returns the context or `this`.
 
 Can be used to build some callback based APIs.
 
@@ -95,15 +95,11 @@ However note that the dependencies are still promise based.
 
 ### Return auto
 
-A variation that returns either the promise or the context, depends on if a callback function is given.
+A variant that returns either the promise or the context, depending on if a callback function is given.
 
 Can be used to build something with both a promise API and a callback API.
 
 However note that 1) the dependencies are still promise based and 2) the last argument is considered as a callback if it is a function and 3) we assume the callback will be properly handled.
-
-### With "promisify"
-
-TODO
 
 ### Cached result (caching the promise)
 

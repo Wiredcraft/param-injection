@@ -28,6 +28,8 @@
   "dependencies": {
     "bluebird": "2",
     "debug": "*",
+    "file-register": ">=0.0.3",
+    "mixable-object": "*",
     "sliced": "*"
   },
   "devDependencies": {

@@ -4,8 +4,6 @@ var Promise = require('bluebird');
 
 var injectify = require('../');
 
-function noop() {}
-
 describe('Injectify without params:', function() {
 
     describe('Use with something wrong:', function() {

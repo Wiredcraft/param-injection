@@ -1,13 +1,15 @@
-var injectify;
+var Register, injectify, mixable, path;
 
 module.exports = injectify = require('./lib/injectify');
 
-injectify.utils = require('./lib/utils');
+path = require('path');
 
-injectify.bodies = require('./lib/bodies');
+mixable = require('mixable-object');
 
-injectify.methods = require('./lib/methods');
+Register = require('file-register');
 
-injectify.returnSelf = require('./lib/variations/returnSelf');
+mixable(injectify);
 
-injectify.returnAuto = require('./lib/variations/returnAuto');
+injectify.mixin(Register.proto);
+
+injectify.register(path.resolve(__dirname, 'lib'));

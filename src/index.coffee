@@ -1,10 +1,9 @@
 module.exports = injectify = require('./lib/injectify')
 
-# Exports the internals.
-injectify.utils = require('./lib/utils')
-injectify.bodies = require('./lib/bodies')
-injectify.methods = require('./lib/methods')
+path = require('path')
+mixable = require('mixable-object')
+Register = require('file-register')
 
-# Variations.
-injectify.returnSelf = require('./lib/variations/returnSelf')
-injectify.returnAuto = require('./lib/variations/returnAuto')
+mixable(injectify)
+injectify.mixin(Register.proto)
+injectify.register(path.resolve(__dirname, 'lib'))
