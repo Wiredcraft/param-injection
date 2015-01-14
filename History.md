@@ -1,4 +1,13 @@
 
+0.1.0 / 2015-01-14
+==================
+
+  * Reorganised file structure with file-register.
+  * Ignore /benchmark from npm package.
+  * Removed context argument from injectify() - too confusing and not that useful.
+  * Added a simple benchmark.
+  * Added test for body with parameters.
+
 0.0.2 / 2014-12-24
 ==================
 
